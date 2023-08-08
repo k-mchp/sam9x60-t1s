@@ -1,0 +1,39 @@
+#! /bin/bash
+
+<<comment
+Prerequisites:
+-This script was tested on a new Mint21 machine and Ubuntu 20.04
+
+Description:
+-This script rebuilds the SAM9X60 t1s image.
+
+
+Usage:
+". t1s.rebuild" runs from the build directory
+
+ Written by:
+ __  __     
+/\ \/ /     
+\ \  _"-.  
+ \ \_\ \_\  
+  \/_/\/_/ 
+  
+comment
+
+lp='\e[1;35m'
+NC='\e[0m'
+
+#--------------START WORK--------------------
+
+cd poky
+export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
+source oe-init-build-env build-microchip
+cp -r -f -v ../../t1s.bblayers.conf conf/bblayers.conf
+cp -r -f -v ../../t1s.local.conf conf/local.conf
+MACHINE=sam9x60-curiosity-sd bitbake -c clean sam9x60-t1s-demo
+MACHINE=sam9x60-curiosity-sd bitbake sam9x60-t1s-demo
+
+cd ../..
+echo -e "${lp}Rebuild Complete!!! ${NC}\c"
+echo -e "\c"
+
