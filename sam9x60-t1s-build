@@ -51,7 +51,7 @@ sudo apt-get -y install gawk wget git-core git-lfs diffstat unzip texinfo gcc-mu
 export CROSS_COMPILE=arm-linux-gnueabi-
 
 echo -e "${rd}-----Cloning Microchip Repos-----${NC}"
-git clone https://github.com/k-mchp/meta-microchip-wlsom-t1s.git
+git clone https://github.com/k-mchp/meta-microchip-sam9x60-t1s.git
 git clone https://git.yoctoproject.org/poky -b dunfell
 git clone https://git.openembedded.org/meta-openembedded -b dunfell
 git clone https://github.com/linux4sam/meta-atmel.git -b dunfell
