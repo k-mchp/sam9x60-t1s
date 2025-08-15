@@ -2,7 +2,7 @@
 
 <<comment
 Prerequisites:
--This script was tested on a new Mint21 machine and Ubuntu 20.04
+-This script was tested on Ubuntu 24.04.3
 
 Description:
 -This script clones all repos needed to build an Azure image for the SAM9X60 MPU into the newly created directory
@@ -46,22 +46,19 @@ sudo apt-get -y upgrade
 sudo apt-get -y install gawk wget git git-lfs diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
      xz-utils debianutils iputils-ping python3-git python3-jinja2 libsdl1.2-dev \
-     pylint xterm libssl-dev python3-pyasyncore
+     pylint xterm libssl-dev python3-pyasyncore repo libncurses-dev lz4
 
 export CROSS_COMPILE=arm-linux-gnueabi-
 
 echo -e "${rd}-----Cloning Microchip Repos-----${NC}"
 git clone https://github.com/k-mchp/meta-microchip-sam9x60-t1s.git
-git clone https://git.yoctoproject.org/poky -b dunfell
-git clone https://git.openembedded.org/meta-openembedded -b dunfell
-git clone https://github.com/linux4sam/meta-atmel.git -b dunfell
 
 echo -e "${lg}-----Building t1s Image for WLSOM-----${NC}"
-cd poky
-export TEMPLATECONF=${TEMPLATECONF:-../meta-atmel/conf}
-source oe-init-build-env build-microchip
-cp -r -f -v ../../t1s.bblayers.conf conf/bblayers.conf
-cp -r -f -v ../../t1s.local.conf conf/local.conf
+repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip-2025.04 -m mpu/default.xml
+repo sync
+export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu/conf/templates/default}
+source openembedded-core/oe-init-build-env
+bitbake-layers add-layer ../meta-microchip-sam9x60-t1s/
 MACHINE=sam9x60-curiosity-sd bitbake sam9x60-t1s-demo
 
 cd ../..
