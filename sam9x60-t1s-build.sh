@@ -13,11 +13,11 @@ Description:
 
 
 Usage:
-". sam9x60-t1s-build"
+". sam9x60-t1s-build.sh"
 
 Examples:
 For new installs use the following command with the script in your created build folder:
-". sam9x60-t1s-build"
+". sam9x60-t1s-build.sh"
 This will clone all repos and build an WLSOM t1s image
 
 To build only, after you have already setup, run:
