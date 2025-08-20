@@ -5,8 +5,7 @@ Prerequisites:
 -This script was tested on Ubuntu 24.04.3
 
 Description:
--This script clones all repos needed to build an Azure image for the SAM9X60 MPU into the newly created directory
--The script copies bblayers.conf, local.conf and defconfig into proper folders for building correctly
+-This script clones all repos needed to build a t1s image for the SAM9X60 MPU into the newly created directory
 -The script copies rebuild script into the build folder, so the image can be rebuilt by just running this script as ". t1s.rebuild" from the build folder
 -The script also puts t1s.clean, t1s.rebuild, and sdk scripts into the build folder
 -Lastly it builds the final image
@@ -21,7 +20,7 @@ For new installs use the following command with the script in your created build
 This will clone all repos and build an WLSOM t1s image
 
 To build only, after you have already setup, run:
-". t1s.rebuild" from the build directory
+". t1s.rebuild.sh" from the build directory
 
  Written by:
  __  __     
@@ -60,10 +59,10 @@ fi
 
 echo -e "${rd}-----Cloning Microchip Repos-----${NC}"
 git clone https://github.com/k-mchp/meta-microchip-sam9x60-t1s.git
-
-echo -e "${lg}-----Building t1s Image for WLSOM-----${NC}"
 repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip-2025.04 -m mpu/default.xml
 repo sync
+
+echo -e "${lg}-----Building t1s Image for WLSOM-----${NC}"
 export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu/conf/templates/default}
 source openembedded-core/oe-init-build-env
 bitbake-layers add-layer ../meta-microchip-sam9x60-t1s/
