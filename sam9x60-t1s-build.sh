@@ -17,7 +17,7 @@ Usage:
 Examples:
 For new installs use the following command with the script in your created build folder:
 ". sam9x60-t1s-build.sh"
-This will clone all repos and build an WLSOM t1s image
+This will clone all repos and build an SAM9X60 t1s image
 
 To build only, after you have already setup, run:
 ". t1s.rebuild" from the build directory
@@ -62,7 +62,7 @@ git clone https://github.com/k-mchp/meta-microchip-sam9x60-t1s.git
 repo init -u https://github.com/linux4microchip/meta-mchp-manifest.git -b refs/tags/linux4microchip-2025.04 -m mpu/default.xml
 repo sync
 
-echo -e "${lg}-----Building t1s Image for WLSOM-----${NC}"
+echo -e "${lg}-----Building t1s Image for SAM9X60-----${NC}"
 export TEMPLATECONF=${TEMPLATECONF:-../meta-mchp/meta-mchp-mpu/conf/templates/default}
 source openembedded-core/oe-init-build-env
 bitbake-layers add-layer ../meta-microchip-sam9x60-t1s/
