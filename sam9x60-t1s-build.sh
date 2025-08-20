@@ -20,7 +20,7 @@ For new installs use the following command with the script in your created build
 This will clone all repos and build an WLSOM t1s image
 
 To build only, after you have already setup, run:
-". t1s.rebuild.sh" from the build directory
+". t1s.rebuild" from the build directory
 
  Written by:
  __  __     
