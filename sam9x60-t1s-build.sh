@@ -50,6 +50,14 @@ sudo apt-get -y install gawk wget git git-lfs diffstat unzip texinfo gcc-multili
 
 export CROSS_COMPILE=arm-linux-gnueabi-
 
+if [ ! -f /etc/sysctl.d/20-apparmor-donotrestrict.conf ]; then
+  sysctl kernel.dmesg_restrict=0
+  sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+  cat << EOF >> /etc/sysctl.d/20-apparmor-donotrestrict.conf
+  kernel.apparmor_restrict_unprivileged_userns = 0
+EOF
+fi
+
 echo -e "${rd}-----Cloning Microchip Repos-----${NC}"
 git clone https://github.com/k-mchp/meta-microchip-sam9x60-t1s.git
 
