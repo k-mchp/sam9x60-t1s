@@ -69,6 +69,6 @@ bitbake-layers add-layer ../meta-microchip-sam9x60-t1s/
 MACHINE=sam9x60-curiosity-sd bitbake sam9x60-t1s-demo
 
 cd ../..
-echo -e "${lp}T1s Build Complete!!! ${NC}\c"
+echo -e "${lp}SAM9X60 T1s Build Complete!!! ${NC}\c"
 echo -e "\c"
 
