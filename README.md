@@ -4,7 +4,7 @@ Prerequisites:
 Description:
 -This script clones all repos needed to build a t1s image for the SAM9X60 MPU into the newly created directory
 -The script copies rebuild script into the build folder, so the image can be rebuilt by just running this script as ". t1s.rebuild" from the build folder
--The script also puts t1s.clean, t1s.rebuild, and sdk scripts into the build folder
+-The script also puts t1s.clean script into the build folder to clean a build
 -Lastly it builds the final image
 
 
