@@ -49,6 +49,9 @@ sudo apt-get -y install gawk wget git git-lfs diffstat unzip texinfo gcc-multili
 
 export CROSS_COMPILE=arm-linux-gnueabi-
 
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
 if [ ! -f /etc/sysctl.d/20-apparmor-donotrestrict.conf ]; then
   sysctl kernel.dmesg_restrict=0
   sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
